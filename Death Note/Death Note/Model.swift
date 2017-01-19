@@ -18,7 +18,7 @@ class Data {
     init () {
     }
     
-    func addDeath (death: (name: String, date: String, describe: String)) {
+    func addDeath (_ death: (name: String, date: String, describe: String)) {
         deaths.append(death)
     }
 }

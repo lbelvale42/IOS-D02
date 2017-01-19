@@ -15,7 +15,7 @@ class addDeathViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     
     
-    @IBAction func doneFunc(sender: AnyObject) {
+    @IBAction func doneFunc(_ sender: AnyObject) {
         print(nameField.text!)
         print(datePicker.date)
         print(describeField.text)
@@ -23,16 +23,16 @@ class addDeathViewController: UIViewController {
             if  describeField.text.isEmpty {
                 describeField.text = "(Heart Attack)"
             }
-            performSegueWithIdentifier("createDeath", sender: "Foo")
+            performSegue(withIdentifier: "createDeath", sender: "Foo")
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "createDeath" {
-            if let vc = segue.destinationViewController as? ViewController {
-            let dateFormatter = NSDateFormatter()
+            if let vc = segue.destination as? ViewController {
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd-MM-YYYY hh:mm a"
-            let dateString = dateFormatter.stringFromDate(datePicker.date)
+            let dateString = dateFormatter.string(from: datePicker.date)
                vc.ret = (nameField.text!, dateString, describeField.text)
             }
         }
@@ -41,13 +41,13 @@ class addDeathViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
-        nameField.backgroundColor = UIColor.clearColor()
+        nameField.backgroundColor = UIColor.clear
         nameField.layer.borderWidth = CGFloat(2.0)
-        nameField.layer.borderColor = UIColor.blackColor().CGColor
+        nameField.layer.borderColor = UIColor.black.cgColor
         nameField.layer.cornerRadius = CGFloat(5.0)
-        describeField.backgroundColor = UIColor.clearColor()
+        describeField.backgroundColor = UIColor.clear
         describeField.layer.borderWidth = CGFloat(2.0)
-        describeField.layer.borderColor = UIColor.blackColor().CGColor
+        describeField.layer.borderColor = UIColor.black.cgColor
         describeField.layer.cornerRadius = CGFloat(5.0)
     }
 }
